@@ -1,0 +1,8 @@
+{{- template "lib-chart.service" (list . "checkoutservice.service") -}}
+{{- define "checkoutservice.service" -}}
+spec:
+  ports:
+    - name: grpc
+      port: 5050
+      targetPort: 5050
+{{- end -}}

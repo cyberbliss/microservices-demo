@@ -1,0 +1,39 @@
+dependencies:
+- name: adservice
+  repository: file://../adservice
+  version: 0.1.0
+- name: cartservice
+  repository: file://../cartservice
+  version: 0.1.0
+- name: checkoutservice
+  repository: file://../checkoutservice
+  version: 0.1.0
+- name: currencyservice
+  repository: file://../currencyservice
+  version: 0.1.0
+- name: emailservice
+  repository: file://../emailservice
+  version: 0.1.0
+- name: frontend
+  repository: file://../frontend
+  version: 0.1.0
+- name: loadgenerator
+  repository: file://../loadgenerator
+  version: 0.1.0
+- name: paymentservice
+  repository: file://../paymentservice
+  version: 0.1.0
+- name: productcatalogservice
+  repository: file://../productcatalogservice
+  version: 0.1.0
+- name: recommendationservice
+  repository: file://../recommendationservice
+  version: 0.1.0
+- name: redis
+  repository: file://../redis
+  version: 0.1.0
+- name: shippingservice
+  repository: file://../shippingservice
+  version: 0.1.0
+digest: sha256:f91a4f0fdc5721befae65f72fc78e07a909098edf045cf74ef4a6ac5f1ad26b0
+generated: "2020-11-10T17:46:11.809536105Z"

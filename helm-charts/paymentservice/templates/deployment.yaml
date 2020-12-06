@@ -1,0 +1,31 @@
+{{- template "lib-chart.deployment" (list . "paymentservice.deployment") -}}
+{{- define "paymentservice.deployment" -}}
+## Define overrides for your Deployment resource here, e.g.
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: paymentservice
+  template:
+    spec:
+      terminationGracePeriodSeconds: 5
+      containers:
+      - {{ template "lib-chart.container" (list . "paymentservice.deployment.container") }}
+{{- end -}}
+{{- define "paymentservice.deployment.container" }}
+env:
+- name: PORT
+  value: "50051"
+
+ports:
+- containerPort: 50051
+readinessProbe:
+  initialDelaySeconds: 15
+  exec:
+    command: ["/bin/grpc_health_probe", "-addr=:50051"]
+livenessProbe:
+  initialDelaySeconds: 15
+  periodSeconds: 10
+  exec:
+    command: ["/bin/grpc_health_probe", "-addr=:50051"]
+{{- end -}}

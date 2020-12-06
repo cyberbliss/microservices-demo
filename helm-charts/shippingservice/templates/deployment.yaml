@@ -1,0 +1,28 @@
+{{- template "lib-chart.deployment" (list . "shippingservice.deployment") -}}
+{{- define "shippingservice.deployment" -}}
+## Define overrides for your Deployment resource here, e.g.
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: shippingservice
+  template:
+    spec:
+      terminationGracePeriodSeconds: 5
+      containers:
+      - {{ template "lib-chart.container" (list . "shippingservice.deployment.container") }}
+{{- end -}}
+{{- define "shippingservice.deployment.container" }}
+env:
+- name: PORT
+  value: "50051"
+ports:
+- containerPort: 50051
+readinessProbe:
+  periodSeconds: 5
+  exec:
+    command: ["/bin/grpc_health_probe", "-addr=:50051"]
+livenessProbe:
+  exec:
+    command: ["/bin/grpc_health_probe", "-addr=:50051"]
+{{- end -}}

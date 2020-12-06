@@ -1,0 +1,11 @@
+apiVersion: v2
+name: adservice
+description: A Helm chart for Kubernetes
+type: application
+version: 0.1.0
+appVersion: 0.1.4
+
+dependencies:
+- name: lib-chart
+  version: "^0.1.0"
+  repository: "file://../lib-chart"

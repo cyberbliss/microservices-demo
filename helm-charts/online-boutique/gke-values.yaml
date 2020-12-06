@@ -1,0 +1,45 @@
+adservice:
+  enabled: true
+  fullnameOverride: adservice
+cartservice:
+  enabled: true
+  fullnameOverride: cartservice
+checkoutservice:
+  enabled: true
+  fullnameOverride: checkoutservice
+currencyservice:
+  enabled: true
+  fullnameOverride: currencyservice
+emailservice:
+  enabled: true
+  fullnameOverride: emailservice  
+frontend:
+  enabled: true
+  fullnameOverride: frontend
+  ingress:
+    enabled: true
+    hosts:
+      - name: localhost
+        port: 80
+loadgenerator:
+  enabled: true
+  fullnameOverride: loadgenerator
+paymentservice:
+  enabled: true
+  fullnameOverride: paymentservice  
+productcatalogservice:
+  enabled: true
+  fullnameOverride: productcatalogservice  
+recommendationservice:
+  enabled: true
+  fullnameOverride: recommendationservice  
+redis:
+  fullnameOverride: redis-cart
+  enabled: true
+  image:
+    tag: latest
+    pullSecrets:
+    - gcr-access-marketplace
+shippingservice:
+  enabled: true
+  fullnameOverride: shippingservice  

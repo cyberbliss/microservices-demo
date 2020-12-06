@@ -1,0 +1,11 @@
+apiVersion: v2
+name: redis
+description: A Helm chart for deploying the Online Boutique's Redis dependency
+type: application
+version: 0.1.0
+appVersion: 0.1.4
+
+dependencies:
+- name: lib-chart
+  version: "^0.1.0"
+  repository: "file://../lib-chart"

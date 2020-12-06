@@ -1,0 +1,56 @@
+apiVersion: v2
+name: online-boutique
+description: A Helm chart for installing Online Boutique. See README.md for installation instructions
+home: https://github.com/cyberbliss/microservices-demo
+type: application
+version: 0.1.0
+appVersion: 0.1.4
+dependencies:
+  - name: adservice
+    version: 0.1.0
+    repository: "file://../adservice"
+    condition: adservice.enabled
+  - name: cartservice
+    version: 0.1.0
+    repository: "file://../cartservice"
+    condition: cartservice.enabled    
+  - name: checkoutservice
+    version: 0.1.0
+    repository: "file://../checkoutservice"
+    condition: checkoutservice.enabled
+  - name: currencyservice
+    version: 0.1.0
+    repository: "file://../currencyservice"
+    condition: currencyservice.enabled
+  - name: emailservice
+    version: 0.1.0
+    repository: "file://../emailservice"
+    condition: emailservice.enabled    
+  - name: frontend
+    version: 0.1.0
+    repository: "file://../frontend"
+    condition: frontend.enabled    
+  - name: loadgenerator
+    version: 0.1.0
+    repository: "file://../loadgenerator"
+    condition: loadgenerator.enabled 
+  - name: paymentservice
+    version: 0.1.0
+    repository: "file://../paymentservice"
+    condition: paymentservice.enabled    
+  - name: productcatalogservice
+    version: 0.1.0
+    repository: "file://../productcatalogservice"
+    condition: productcatalogservice.enabled  
+  - name: recommendationservice
+    version: 0.1.0
+    repository: "file://../recommendationservice"
+    condition: recommendationservice.enabled    
+  - name: redis
+    version: 0.1.0
+    repository: "file://../redis"
+    condition: redis.enabled  
+  - name: shippingservice
+    version: 0.1.0
+    repository: "file://../shippingservice"
+    condition: shippingservice.enabled 

@@ -1,0 +1,8 @@
+{{- template "lib-chart.service" (list . "frontend.service") -}}
+{{- define "frontend.service" -}}
+spec:
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
+{{- end -}}

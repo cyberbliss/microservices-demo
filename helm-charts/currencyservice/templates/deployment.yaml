@@ -1,0 +1,28 @@
+{{- template "lib-chart.deployment" (list . "currencyservice.deployment") -}}
+{{- define "currencyservice.deployment" -}}
+## Define overrides for your Deployment resource here, e.g.
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: currencyservice
+  template:
+    spec:
+      terminationGracePeriodSeconds: 5
+      containers:
+      - {{ template "lib-chart.container" (list . "currencyservice.deployment.container") }}
+{{- end -}}
+{{- define "currencyservice.deployment.container" }}
+env:
+- name: PORT
+  value: "7000"
+
+ports:
+- containerPort: 7000
+readinessProbe:
+  exec:
+    command: ["/bin/grpc_health_probe", "-addr=:7000"]
+livenessProbe:
+  exec:
+    command: ["/bin/grpc_health_probe", "-addr=:7000"]
+{{- end -}}

@@ -1,0 +1,11 @@
+apiVersion: v2
+name: productcatalogservice
+description: A Helm chart for deploying the Online Boutique's product catalog service
+type: application
+version: 0.1.0
+appVersion: 0.1.4
+
+dependencies:
+- name: lib-chart
+  version: "^0.1.0"
+  repository: "file://../lib-chart"

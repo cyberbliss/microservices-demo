@@ -1,0 +1,21 @@
+{{- template "lib-chart.deployment" (list . "loadgenerator.deployment") -}}
+{{- define "loadgenerator.deployment" -}}
+## Define overrides for your Deployment resource here, e.g.
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: loadgenerator
+  template:
+    spec:
+      terminationGracePeriodSeconds: 5
+      containers:
+      - {{ template "lib-chart.container" (list . "loadgenerator.deployment.container") }}
+{{- end -}}
+{{- define "loadgenerator.deployment.container" }}
+env:
+- name: FRONTEND_ADDR
+  value: "frontend:80"
+- name: USERS
+  value: {{ .Values.users | quote }}
+{{- end -}}

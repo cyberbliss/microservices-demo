@@ -1,0 +1,20 @@
+replicaCount: 1
+global:
+  image:
+    pullSecrets:
+    
+image:
+  repository: eu.gcr.io/jetstack-steve-judd/adservice
+  pullPolicy: IfNotPresent
+  tag: v0.1.4-50-g5372b01
+  
+resources:
+  requests:
+    cpu: 200m
+    memory: 180Mi
+  limits:
+    cpu: 300m
+    memory: 300Mi
+
+service:
+  type: ClusterIP

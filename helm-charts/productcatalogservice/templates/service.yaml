@@ -1,0 +1,8 @@
+{{- template "lib-chart.service" (list . "productcatalogservice.service") -}}
+{{- define "productcatalogservice.service" -}}
+spec:
+  ports:
+    - name: grpc
+      port: 3550
+      targetPort: 3550
+{{- end -}}

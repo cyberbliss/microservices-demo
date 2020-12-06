@@ -1,0 +1,8 @@
+{{- template "lib-chart.service" (list . "recommendationservice.service") -}}
+{{- define "recommendationservice.service" -}}
+spec:
+  ports:
+    - name: grpc
+      port: 8080
+      targetPort: 8080
+{{- end -}}

@@ -1,0 +1,32 @@
+{{- template "lib-chart.deployment" (list . "redis.deployment") -}}
+{{- define "redis.deployment" -}}
+## Define overrides for your Deployment resource here, e.g.
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    spec:
+      terminationGracePeriodSeconds: 5
+      containers:
+      - {{ template "lib-chart.container" (list . "redis.deployment.container") }}
+      volumes:
+      - name: redis-data
+        emptyDir: {}
+{{- end -}}
+{{- define "redis.deployment.container" }}
+ports:
+- containerPort: 6379
+readinessProbe:
+  periodSeconds: 5
+  tcpSocket:
+    port: 6379
+livenessProbe:
+  periodSeconds: 5
+  tcpSocket:
+    port: 6379
+volumeMounts:
+- mountPath: /data
+  name: redis-data
+{{- end -}}

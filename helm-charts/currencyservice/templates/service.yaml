@@ -1,0 +1,8 @@
+{{- template "lib-chart.service" (list . "currencyservice.service") -}}
+{{- define "currencyservice.service" -}}
+spec:
+  ports:
+    - name: grpc
+      port: 7000
+      targetPort: 7000
+{{- end -}}

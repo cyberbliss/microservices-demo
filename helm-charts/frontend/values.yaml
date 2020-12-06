@@ -1,0 +1,26 @@
+replicaCount: 1
+global:
+  image:
+    pullSecrets:
+    
+image:
+  repository: eu.gcr.io/jetstack-steve-judd/frontend
+  pullPolicy: IfNotPresent
+  tag: v0.1.4-50-g5372b01
+  
+resources:
+  requests:
+    cpu: 100m
+    memory: 64Mi
+  limits:
+    cpu: 200m
+    memory: 128Mi
+
+service:
+  type: ClusterIP
+
+ingress:
+  enabled: false
+  # hosts:
+  #   - name: localhost
+  #     port: 80

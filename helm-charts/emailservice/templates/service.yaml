@@ -1,0 +1,8 @@
+{{- template "lib-chart.service" (list . "emailservice.service") -}}
+{{- define "emailservice.service" -}}
+spec:
+  ports:
+    - name: grpc
+      port: 5000
+      targetPort: 8080
+{{- end -}}

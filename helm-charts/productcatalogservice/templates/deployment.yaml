@@ -1,0 +1,27 @@
+{{- template "lib-chart.deployment" (list . "productcatalogservice.deployment") -}}
+{{- define "productcatalogservice.deployment" -}}
+## Define overrides for your Deployment resource here, e.g.
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: productcatalogservice
+  template:
+    spec:
+      terminationGracePeriodSeconds: 5
+      containers:
+      - {{ template "lib-chart.container" (list . "productcatalogservice.deployment.container") }}
+{{- end -}}
+{{- define "productcatalogservice.deployment.container" }}
+env:
+- name: PORT
+  value: "3550"
+ports:
+- containerPort: 3550
+readinessProbe:
+  exec:
+    command: ["/bin/grpc_health_probe", "-addr=:3550"]
+livenessProbe:
+  exec:
+    command: ["/bin/grpc_health_probe", "-addr=:3550"]
+{{- end -}}

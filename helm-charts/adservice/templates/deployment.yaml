@@ -1,0 +1,31 @@
+{{- template "lib-chart.deployment" (list . "adservice.deployment") -}}
+{{- define "adservice.deployment" -}}
+## Define overrides for your Deployment resource here, e.g.
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: adservice
+  template:
+    spec:
+      terminationGracePeriodSeconds: 5
+      containers:
+      - {{ template "lib-chart.container" (list . "adservice.deployment.container") }}
+{{- end -}}
+{{- define "adservice.deployment.container" }}
+env:
+- name: PORT
+  value: "9555"
+ports:
+- containerPort: 9555
+readinessProbe:
+  initialDelaySeconds: 20
+  periodSeconds: 15
+  exec:
+    command: ["/bin/grpc_health_probe", "-addr=:9555"]
+livenessProbe:
+  initialDelaySeconds: 20
+  periodSeconds: 15
+  exec:
+    command: ["/bin/grpc_health_probe", "-addr=:9555"]
+{{- end -}}

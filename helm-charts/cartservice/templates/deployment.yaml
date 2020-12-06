@@ -1,0 +1,34 @@
+{{- template "lib-chart.deployment" (list . "cartservice.deployment") -}}
+{{- define "cartservice.deployment" -}}
+## Define overrides for your Deployment resource here, e.g.
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: cartservice
+  template:
+    spec:
+      terminationGracePeriodSeconds: 5
+      containers:
+      - {{ template "lib-chart.container" (list . "cartservice.deployment.container") }}
+{{- end -}}
+{{- define "cartservice.deployment.container" }}
+env:
+- name: PORT
+  value: "7070"
+- name: REDIS_ADDR
+  value: "redis-cart:6379"  
+- name: LISTEN_ADDR
+  value: "0.0.0.0"
+ports:
+- containerPort: 7070
+readinessProbe:
+  initialDelaySeconds: 15
+  exec:
+    command: ["/bin/grpc_health_probe", "-addr=:7070", "-rpc-timeout=5s"]
+livenessProbe:
+  initialDelaySeconds: 15
+  periodSeconds: 10
+  exec:
+    command: ["/bin/grpc_health_probe", "-addr=:7070", "-rpc-timeout=5s"]
+{{- end -}}

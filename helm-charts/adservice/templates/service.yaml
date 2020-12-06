@@ -1,0 +1,8 @@
+{{- template "lib-chart.service" (list . "adservice.service") -}}
+{{- define "adservice.service" -}}
+spec:
+  ports:
+    - name: grpc
+      port: 9555
+      targetPort: 9555
+{{- end -}}

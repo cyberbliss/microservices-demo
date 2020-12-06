@@ -1,0 +1,8 @@
+{{- template "lib-chart.service" (list . "redis.service") -}}
+{{- define "redis.service" -}}
+spec:
+  ports:
+    - name: redis
+      port: 6379
+      targetPort: 6379
+{{- end -}}
